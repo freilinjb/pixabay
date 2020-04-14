@@ -1,12 +1,33 @@
-import React from 'react';
+import React,{ useState, useEffect } from 'react';
 import Formulario from './components/Formulario';
 
 function App() {
+
+  //state de la app
+  const [busqueda, setBusqueda] = useState('');
+
+  useEffect(() => {
+    const consultarAPI = async() => {
+      //validamos que no envie string vacio
+      if(busqueda === '') return;
+      //per_page = para paginar las busqueda
+      const imagenesPorPagina = 10;
+      const KEY = "16045392-564108d2892c94cd456fdcd45" 
+      const url = `https://pixabay.com/api/?key=${KEY}&q=${busqueda}&per_page=${imagenesPorPagina}`;
+
+      const respuesta = await fetch(url);
+      const resultado = await respuesta.json();
+
+      console.log(resultado.hits); 
+    
+    }
+    consultarAPI();
+  },[busqueda]);
   return (
     <div className="container">
         <div className="jumbotron special-color-dark">
           <p className="lead text-center text-white">Buscador de Imágenes</p>
-          <Formulario/>
+          <Formulario setBusqueda={setBusqueda}/>
         </div>
     </div>
   );
