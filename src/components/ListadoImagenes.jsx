@@ -4,7 +4,7 @@ const ListadoImagen = ({imagenes}) => {
     return ( 
         <div className="col-12 p-5 row">
             {imagenes.map(imagen =>(
-                <Imagen/>
+                <Imagen key={imagen.id} imagen={imagen}/>
             ))}
         </div>
      );

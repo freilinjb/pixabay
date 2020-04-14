@@ -21,7 +21,7 @@ function App() {
       const resultado = await respuesta.json();
 
       setImagenes(resultado.hits); 
-    
+  
     }
     consultarAPI();
   },[busqueda]);
