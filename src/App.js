@@ -8,7 +8,7 @@ function App() {
   const [busqueda, setBusqueda] = useState('');
   const [imagenes, setImagenes] = useState([]);
   const [paginaActual, setPaginaActual] = useState(1);
-  const [totalPaginas, setTotalPaginas] = useState(1);
+  const [totalPaginas, setTotalPaginas] = useState(5);
 
   useEffect(() => {
     const consultarAPI = async() => {
@@ -37,9 +37,20 @@ function App() {
   const paginaAnterior = () => {
     const nuevaPaginaActual = paginaActual - 1;
 
-    console.log(nuevaPaginaActual);
-    
+    //validando que no permita pasar numeros negativos
+    if(nuevaPaginaActual === 0) return;
+
+    setPaginaActual(nuevaPaginaActual);
   }
+    //definir la pagina siguiente
+    const paginaSiguiente = () => {
+      const nuevaPaginaActual = paginaActual + 1;
+
+      //valida que no permite dar a siguiente si la pagina actual es mayor que la total 
+      if(nuevaPaginaActual > totalPaginas) return;
+
+      setPaginaActual(nuevaPaginaActual);
+    }
 
   return (
     <div className="container">
@@ -49,8 +60,8 @@ function App() {
         </div>
         <div className="row justify-content-center">
           <ListadoImagenes imagenes={imagenes}/>
-          <button type="button" className="btn btn-info " onClick={paginaAnterior}>&laquo; Anterior</button>
-          <button type="button" className="btn btn-info">Siguiente &raquo;</button>
+          <button type="button" className="btn btn-info" onClick={paginaAnterior}>&laquo; Anterior</button>
+          <button type="button" className="btn btn-info" onClick={paginaSiguiente}>Siguiente &raquo;</button>
         </div>
     </div>
   );
