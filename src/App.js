@@ -1,10 +1,12 @@
 import React,{ useState, useEffect } from 'react';
 import Formulario from './components/Formulario';
+import ListadoImagenes from './components/ListadoImagenes';
 
 function App() {
 
   //state de la app
   const [busqueda, setBusqueda] = useState('');
+  const [imagenes, setImagenes] = useState([]);
 
   useEffect(() => {
     const consultarAPI = async() => {
@@ -18,7 +20,7 @@ function App() {
       const respuesta = await fetch(url);
       const resultado = await respuesta.json();
 
-      console.log(resultado.hits); 
+      setImagenes(resultado.hits); 
     
     }
     consultarAPI();
@@ -28,6 +30,9 @@ function App() {
         <div className="jumbotron special-color-dark">
           <p className="lead text-center text-white">Buscador de Imágenes</p>
           <Formulario setBusqueda={setBusqueda}/>
+        </div>
+        <div className="row justify-content-center">
+          <ListadoImagenes imagenes={imagenes}/>
         </div>
     </div>
   );
