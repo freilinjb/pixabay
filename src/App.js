@@ -23,8 +23,11 @@ function App() {
       const resultado = await respuesta.json();
 
       setImagenes(resultado.hits); 
+
       //verificando la cantidad de imagenes 
-      console.log(resultado);
+      const calcularTotalPaginas = Math.ceil(resultado.totalHits / imagenesPorPagina);
+      setTotalPaginas(calcularTotalPaginas);
+
   
     }
     consultarAPI();
