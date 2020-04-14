@@ -32,6 +32,15 @@ function App() {
     }
     consultarAPI();
   },[busqueda]);
+
+  //definir la pagina anterior
+  const paginaAnterior = () => {
+    const nuevaPaginaActual = paginaActual - 1;
+
+    console.log(nuevaPaginaActual);
+    
+  }
+
   return (
     <div className="container">
         <div className="jumbotron special-color-dark">
@@ -40,6 +49,8 @@ function App() {
         </div>
         <div className="row justify-content-center">
           <ListadoImagenes imagenes={imagenes}/>
+          <button type="button" className="btn btn-info " onClick={paginaAnterior}>&laquo; Anterior</button>
+          <button type="button" className="btn btn-info">Siguiente &raquo;</button>
         </div>
     </div>
   );
