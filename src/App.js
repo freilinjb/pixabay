@@ -24,10 +24,13 @@ function App() {
 
       setImagenes(resultado.hits); 
 
-      //verificando la cantidad de imagenes 
+      //calcular el total de pagina
       const calcularTotalPaginas = Math.ceil(resultado.totalHits / imagenesPorPagina);
       setTotalPaginas(calcularTotalPaginas);
-
+      
+      const jumbotron = document.querySelector('.jumbotron');
+      jumbotron.scrollIntoView({ behavior: 'smooth'});
+      //animacion tipo smooth
   
     }
     consultarAPI();
