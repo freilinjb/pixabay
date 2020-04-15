@@ -8,7 +8,7 @@ function App() {
   const [busqueda, setBusqueda] = useState('');
   const [imagenes, setImagenes] = useState([]);
   const [paginaActual, setPaginaActual] = useState(1);
-  const [totalPaginas, setTotalPaginas] = useState(5);
+  const [totalPaginas, setTotalPaginas] = useState(1);
 
   useEffect(() => {
     const consultarAPI = async() => {
