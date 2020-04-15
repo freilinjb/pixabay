@@ -17,7 +17,7 @@ function App() {
       //per_page = para paginar las busqueda
       const imagenesPorPagina = 30;
       const KEY = "16045392-564108d2892c94cd456fdcd45" 
-      const url = `https://pixabay.com/api/?key=${KEY}&q=${busqueda}&per_page=${imagenesPorPagina}`;
+      const url = `https://pixabay.com/api/?key=${KEY}&q=${busqueda}&per_page=${imagenesPorPagina}&page=${paginaActual}`;
 
       const respuesta = await fetch(url);
       const resultado = await respuesta.json();
@@ -31,7 +31,7 @@ function App() {
   
     }
     consultarAPI();
-  },[busqueda]);
+  },[busqueda, paginaActual]);
 
   //definir la pagina anterior
   const paginaAnterior = () => {
@@ -69,7 +69,7 @@ function App() {
           {(paginaActual === totalPaginas) ? null :
           (
             <button type="button" className="btn btn-info" onClick={paginaSiguiente}>Siguiente &raquo;</button>
-          )}
+          ) }
         </div>
     </div>
   );
